@@ -67,37 +67,32 @@ document.addEventListener('WebComponentsReady', () => {
   connectToggle.addEventListener('click', () => {
 
     console.log('Conectando...');
-    progress.hidden = false;
-    if (readCharacteristic == null) {
-      navigator.bluetooth.requestDevice({
-        filters: [{
-          services: [BALEIRO_SERVICE_UUID]
-        }]
-      })
-      .then(device => {
-        console.log('Conectando ao servidor GATT...');
-        return device.gatt.connect();
-      })
-      .then(server => {
-        console.log('> Servidor GATT encontrado');
-        gattServer = server;
-        // Get car service
-        return gattServer.getPrimaryService(BALEIRO_SERVICE_UUID);
-      })
-      .then(service => {
-        console.log('> Serviço do baleiro encontrado');
-        baleiroService = service;
-        // Get write characteristic
-        return baleiroService.getCharacteristic(WRITE_CHARACTERISTICS_UUID);
-      })
-      .then(characteristic => {
-        console.log('> Caracteristica de escrira encontrada');
-        writeCharacteristic = characteristic;
-      })
-      .catch(handleError);
-    } else {
-      progress.hidden = true;
-    }
+    navigator.bluetooth.requestDevice({
+      filters: [{
+        services: [BALEIRO_SERVICE_UUID]
+      }]
+    })
+    .then(device => {
+      console.log('Conectando ao servidor GATT...');
+      return device.gatt.connect();
+    })
+    .then(server => {
+      console.log('> Servidor GATT encontrado');
+      gattServer = server;
+      // Get car service
+      return gattServer.getPrimaryService(BALEIRO_SERVICE_UUID);
+    })
+    .then(service => {
+      console.log('> Serviço do baleiro encontrado');
+      baleiroService = service;
+      // Get write characteristic
+      return baleiroService.getCharacteristic(WRITE_CHARACTERISTICS_UUID);
+    })
+    .then(characteristic => {
+      console.log('> Caracteristica de escrira encontrada');
+      writeCharacteristic = characteristic;
+    })
+    .catch(handleError);
 
   });
 
@@ -105,6 +100,5 @@ document.addEventListener('WebComponentsReady', () => {
     let encoder = new TextEncoder("utf8")
     let data = encoder.encode("DISPENSE")
     sendCommand(data)
-
   });
 });
