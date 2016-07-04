@@ -5,14 +5,12 @@ const WRITE_CHARACTERISTICS_UUID = '0000aa01-0000-1000-8000-00805f9b34fb';
 
 document.addEventListener('WebComponentsReady', () => {
   let connectToggle = document.querySelector('#connect');
-  let progress = document.querySelector('#progress');
   let dialog = document.querySelector('#dialog');
   let botaoCompra = document.querySelector('#btCompra');
   let gattServer;
   let baleiroService;
   let writeCharacteristic;
   let busy = false;
-  progress.hidden = true;
   /**
    * Check if browser supports Web Bluetooth API.
    */
@@ -25,7 +23,6 @@ document.addEventListener('WebComponentsReady', () => {
    */
   function resetVariables() {
     busy = false;
-    progress.hidden = true;
     gattServer = null;
     baleiroService = null;
     writeCharacteristic = null;
