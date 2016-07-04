@@ -1,0 +1,123 @@
+<html lang="pt-BR">
+  <head>
+    <title>Maquina de Balas</title>
+    <meta name="description" content="Maquina de balas controlada por Webbluettoth Api.">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <!-- Polymer components -->
+    <link rel="import" href="bower_components/paper-progress/paper-progress.html">
+    <link rel="import" href="bower_components/paper-slider/paper-slider.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-card/paper-card.html">
+    <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+    <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+
+    <link rel="import" href="bower_components/paper-styles/color.html">
+    <link rel="stylesheet" href="bower_components/paper-styles/demo.css">
+
+    <style is="custom-style">
+      paper-progress {
+        width: 100%;
+      }
+      paper-progress.blue {
+        paper-progress-active-color: var(--paper-light-blue-500);
+        paper-progress-secondary-color: var(--paper-light-blue-100);
+      }
+      paper-slider {
+        width: 100%;
+      }
+      paper-slider.blue {
+        paper-slider-active-color: var(--paper-light-blue-500);
+        paper-slider-knob-color: var(--paper-light-blue-500);
+      }
+      paper-toggle-button.blue {
+        --paper-toggle-button-checked-bar-color:  var(--paper-light-blue-500);
+        --paper-toggle-button-checked-button-color:  var(--paper-light-blue-500);
+        --paper-toggle-button-checked-ink-color: var(--paper-light-blue-500);
+        --paper-toggle-button-unchecked-bar-color:  var(--paper-light-blue-900);
+        --paper-toggle-button-unchecked-button-color:  var(--paper-light-blue-900);
+        --paper-toggle-button-unchecked-ink-color: var(--paper-light-blue-900);
+      }
+      paper-button {
+        display: block;
+        margin-bottom: 2px;
+      }
+      paper-button.colorful {
+        color: #4285f4;
+      }
+      paper-button[raised].colorful {
+        background: #4285f4;
+        color: #fff;
+      }
+      paper-button.blue {
+        color: var(--paper-light-blue-500);
+        paper-button-flat-focus-color: var(--paper-light-blue-50);
+      }
+      body {
+        background-color: var(--paper-grey-50);
+      }
+      #cards {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 400px;
+      }
+      paper-card {
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 100%;
+      }
+      paper-card#logo {
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+      paper-icon-button::shadow #icon {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+
+  </head>
+  <body unresolved>
+    <template id="Toy" is="dom-bind">
+      <div id="cards">
+        <paper-card heading="Baleiro Bluetooth">
+          <div class="card-content">
+            <paper-toggle-button class="blue" id="connect">Conectar</paper-toggle-button>
+            <paper-progress id="progress" indeterminate></paper-progress>
+          </div>
+        </paper-card>
+
+        <paper-card id="logo">
+          <div class="card-content">
+            <image id="image" src="baleiro.jpg" width="200px"></image>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-content">
+            <paper-button id="btCompra" raised class="colorful">Comprar Bala</paper-button>
+          </div>
+        </paper-card>
+
+        <paper-dialog id="no-bluetooth">
+          <h2>No Web Bluetooth</h2>
+          <p>A API Web Bluetooth API não foi encontrada. Ative-a em
+          chrome://flags/#enable-web-bluetoothe tente novamente.</p>
+        </paper-dialog>
+
+        <paper-dialog id="dialog">
+          <h2>Erro</h2>
+          <p>Não foi possível conectar ao dispositivo Bluetooth!</p>
+        </paper-dialog>
+      </div>
+    </template>
+    <script src="baleiro.js"></script>
+  </body>
+</html>
