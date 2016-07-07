@@ -2,9 +2,10 @@
 
 const BALEIRO_SERVICE_UUID = '0000aa00-0000-1000-8000-00805f9b34fb';
 const WRITE_CHARACTERISTICS_UUID = '0000aa01-0000-1000-8000-00805f9b34fb';
+let dosador = false
 
 document.addEventListener('WebComponentsReady', () => {
-  let connectToggle = document.querySelector('#connect');
+  let connect = document.querySelector('#connect');
   let dialog = document.querySelector('#dialog');
   let botaoCompra = document.querySelector('#btCompra');
   let gattServer;
@@ -61,7 +62,7 @@ document.addEventListener('WebComponentsReady', () => {
   }
 
 
-  connectToggle.addEventListener('click', () => {
+  connect.addEventListener('click', () => {
 
     console.log('Conectando...');
     navigator.bluetooth.requestDevice({
@@ -94,8 +95,13 @@ document.addEventListener('WebComponentsReady', () => {
   });
 
   botaoCompra.addEventListener('click', function () {
-    let encoder = new TextEncoder("utf8")
-    let data = encoder.encode("DISPENSE")
-    sendCommand(data)
+    if (dosador){
+      sendCommand(0x01)
+      dosador = false
+    }
+    else {
+      sendCommand(0x00)
+      dosador = true
+    }
   });
 });
