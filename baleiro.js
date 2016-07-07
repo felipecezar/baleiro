@@ -96,11 +96,11 @@ document.addEventListener('WebComponentsReady', () => {
 
   botaoCompra.addEventListener('click', function () {
     if (dosador){
-      sendCommand(0x01)
+      sendCommand(new Uint8Array([0x01]))
       dosador = false
     }
     else {
-      sendCommand(0x00)
+      sendCommand(new Uint8Array([0x00]))
       dosador = true
     }
   });
