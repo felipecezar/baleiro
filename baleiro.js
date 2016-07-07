@@ -1,7 +1,7 @@
 'use strict';
 
-const BALEIRO_SERVICE_UUID = '0000aa00-0000-1000-8000-00805f9b34fb';
-const WRITE_CHARACTERISTICS_UUID = '0000aa01-0000-1000-8000-00805f9b34fb';
+const BALEIRO_SERVICE_UUID = '0000ff10-0000-1000-8000-00805f9b34fb';
+const WRITE_CHARACTERISTICS_UUID = '0000ff11-0000-1000-8000-00805f9b34fb';
 let dosador = false
 
 document.addEventListener('WebComponentsReady', () => {
